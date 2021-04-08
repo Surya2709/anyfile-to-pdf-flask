@@ -18,6 +18,13 @@ def convert_docx(file,dest,filename):
     output= convert(file,dest)
     return dest
     
+@app.route('/download/<path>')
+def download_file(path):
+    print(path)
+    path=  app.config['DOWNLOAD_FOLDER']+"/"+path
+    
+    return send_file(path, as_attachment=True)
+
 
 @app.route("/",methods = ["GET" , "POST"])
 @app.route('/upload-file',methods = ["GET" , "POST"])
@@ -32,12 +39,15 @@ def Home():
             dest_base_route = app.config['DOWNLOAD_FOLDER']
             outputpath = convert_docx(file_route,dest_base_route,filename)
             print(outputpath)
+            re_route = "http://127.0.0.1:5000/download/"+filename+".pdf"
+            return redirect(re_route)
             #print(file_route)
-            return send_file(outputpath, as_attachment=True)
+            #return render_template('index.html',msg=" Converted and Downloaded Successfully ",Supported_types=supported_types)
+            
+            
             
             
     return render_template('index.html',msg=" Please choose your files",Supported_types=supported_types)
-
 
 
 
