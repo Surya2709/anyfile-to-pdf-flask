@@ -1,44 +1,109 @@
-<html>
+{% extends "base.html" %}
 
-    <head>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-        <title> Any To Pdf Converter</title>
 
-    </head>
+{% block title %} Upload File {% endblock %}
 
-   <body>
-      
 
-    <div class="container">
-        <div class="row">
-          <div class="col">
-      
-            <h1>Upload a File</h1>
-            <hr>
-      
-            <form action="/upload-file" method="POST" enctype="multipart/form-data">
-      
-              <div class="form-group">
-                <label>Select File</label>
-                <div class="custom-file">
-                  <input type="file" class="custom-file-input" name="file" id="file">
-                  <label class="custom-file-label" for="image">Select File </label>
-                </div>
-              </div>
-      
-              <button type="submit" class="btn btn-primary">Upload</button>
-      
-            </form>
-      
-          </div>
-        </div>
-      </div>
-      
 
-      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+{% block main %} 
+<div class="main">
+<div class="container-fluid header">
+  <br>
+  <br>
+  <br>
+  <h1 class="heading" align="center">
+    <a href="">The Anyfile to Pdf Converter </a>
+    
+  </h1>
   
-   </body>
-</html>
+</div>
+
+
+<div class="container">
+    <div class="row">
+      <div class="col">
+  
+
+<br>
+        
+        <h1>{{msg}}</h1>
+
+       
+        <br>
+        <br>
+        <form  align ="center" action="/upload-file" method="POST" enctype="multipart/form-data">
+          <input type="file" class="input-btn" name="file_name" multiple >
+          <input type="submit" value="Upload"> 
+         
+        </form>
+        <br>
+        <br>
+      </div>
+    </div>
+  </div>
+  
+  <article align = "center">
+    <h1>How to be a convert ?</h1>
+    <p>
+    > Choose your Files.
+    <br>
+    > Click on upload.
+    <br>
+    > The will be Automatically Downloaded.
+    </p>
+</article>
+
+</div>
+
+
+<div class="footer" align= "center">
+  <h4>Supporter Content Types :  {{Supported_types}}</h4>
+  <p>Developer : Surya Ramachandran , Tamil Nadu, India</p>
+  <p><b>© 2021</b></p>
+  
+</div>
+
+  <style>
+
+
+.footer {
+  bottom: 0px;
+  background-color: dodgerblue;
+  color: white;
+  height: 100px;
+}
+article {
+   
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    font-weight: 800px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin-bottom: 100px;
+}
+
+a{
+  text-decoration: none;
+  color: white;
+}
+a:hover{
+  text-decoration: none;
+  color:red;
+}
+
+.header{
+  background-color: dodgerblue;
+  height: 200px;
+  align-items: center;
+}
+.heading{
+  color: white;
+}
+main{
+  min-height: 100vh;
+}
+  </style>
+  {%endblock %}
