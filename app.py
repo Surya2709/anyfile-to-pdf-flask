@@ -9,14 +9,17 @@ from fpdf import FPDF
 from PIL import Image
 import img2pdf
 from cv2 import cv2
-from 
+from svglib.svglib import svg2rlg
+from reportlab.graphics import renderPDF, renderPM
+import comtypes.client
 
 
+from psd_tools import PSDImage
 
 
 app = Flask(__name__)
 
-supported_types = "DOCX, TXT, GIF, JPEG/JPG, PNG, TIFF, PSD, EPS, AI, INDD, RAW,  PNG, SVG,  ODP, PPT, PPTX "
+supported_types = "DOCX, TXT, GIF, JPEG/JPG, PNG, TIFF, SVG"
 
 app.config['UPLOAD_FOLDER'] = "F:/Word-to-pdf-flask/static/files/uploads"
 app.config['DOWNLOAD_FOLDER'] = "F:/Word-to-pdf-flask/static/files/downloads"
@@ -31,11 +34,13 @@ def convert_docx(file,dest,filename):
     
 @app.route('/download/<path>')
 def download_file(path):
-    print(path)
+    
     path=  app.config['DOWNLOAD_FOLDER']+"/"+path
-
-    return send_file(path, as_attachment=True)
-
+    if os.path.exists(path):
+        return send_file(path, as_attachment=True)
+    else:
+        return render_template("error.html",msg="404 Bad Request ")
+        
 
 @app.route("/",methods = ["GET" , "POST"])
 @app.route('/upload-file',methods = ["GET" , "POST"])
@@ -124,12 +129,22 @@ def Home():
 
             return redirect(re_route)
 
+        elif extension == "svg":
+            f.save(os.path.join(app.config['UPLOAD_FOLDER'], f.filename))
+            file_route = app.config['UPLOAD_FOLDER'] + "/" + f.filename
+            dest_base_route = app.config['DOWNLOAD_FOLDER']
+            out_pdf = dest_base_route+"/"+filename+".pdf"
+            temp_jpg = app.config['TEMP_FOLDER'] + "/"+filename + ".jpg"
 
+            drawing = svg2rlg(file_route)
+            renderPDF.drawToFile(drawing, out_pdf)
 
+            re_route = "http://127.0.0.1:5000/download/"+filename+".pdf"
 
+            return redirect(re_route)
            
         else:
-            return render_template("error.html",msg="We dont deal this Extension pls check the file extension and try again")
+            return render_template("error.html",msg=" Oops Sorry ! We dont deal this Extension ! pls check the file extension and try again \n Supported file Extensions : DOCX, TXT, GIF, JPEG/JPG, PNG, TIFF, SVG")
         
         #print(file_route)
         #return render_template('index.html',msg=" Converted and Downloaded Successfully ",Supported_types=supported_types)
