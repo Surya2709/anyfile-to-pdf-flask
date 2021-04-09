@@ -3,8 +3,7 @@ psd_tools==1.9.17
 img2pdf==0.4.0
 Flask==1.1.2
 fpdf==1.7.2
-opencv_python==4.2.0.34
-comtypes==1.1.7
+opencv_python
 svglib==1.0.1
 Werkzeug==1.0.1
 docx2pdf==0.1.7

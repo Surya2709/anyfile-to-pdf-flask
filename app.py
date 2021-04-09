@@ -11,7 +11,7 @@ import img2pdf
 from cv2 import cv2
 from svglib.svglib import svg2rlg
 from reportlab.graphics import renderPDF, renderPM
-import comtypes.client
+
 
 
 from psd_tools import PSDImage
