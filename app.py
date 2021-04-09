@@ -8,7 +8,7 @@ from docx2pdf import convert
 from fpdf import FPDF 
 from PIL import Image
 import img2pdf
-import cv2
+from cv2 import cv2
 from svglib.svglib import svg2rlg
 from reportlab.graphics import renderPDF, renderPM
 
@@ -42,7 +42,7 @@ def download_file(path):
         return render_template("error.html",msg="404 Bad Request ")
         
 
-@app.route("/",methods = ["GET" , "POST"])
+@app.route("/home",methods = ["GET" , "POST"])
 @app.route('/upload-file',methods = ["GET" , "POST"])
 def Home():
     if request.method == "POST":
