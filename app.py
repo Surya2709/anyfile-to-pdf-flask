@@ -58,7 +58,7 @@ def Home():
             dest_base_route = app.config['DOWNLOAD_FOLDER']
             outputpath = convert_docx(file_route,dest_base_route,filename)
             print(outputpath)
-            re_route = "http://127.0.0.1:5000/download/"+filename+".pdf"
+            re_route = "/download/"+filename+".pdf"
             return redirect(re_route)
         
         elif extension == "txt":
@@ -79,7 +79,7 @@ def Home():
                 pdf.cell(50,5, txt = x, ln = 1, align = 'C') 
             # save the pdf with name .pdf 
             pdf.output(dest_base_route+"/"+filename+".pdf")
-            re_route = "http://127.0.0.1:5000/download/"+filename+".pdf"
+            re_route = "/download/"+filename+".pdf"
             return redirect(re_route)
         elif extension == "jpg" or extension =="jpeg" or extension =="png":
             f.save(os.path.join(app.config['UPLOAD_FOLDER'], f.filename))
@@ -99,7 +99,7 @@ def Home():
             image.close()
             file.close()
 
-            re_route = "http://127.0.0.1:5000/download/"+filename+".pdf"
+            re_route = "/download/"+filename+".pdf"
 
             return redirect(re_route)
 
@@ -125,7 +125,7 @@ def Home():
             image.close()
             file.close()
 
-            re_route = "http://127.0.0.1:5000/download/"+filename+".pdf"
+            re_route = "/download/"+filename+".pdf"
 
             return redirect(re_route)
 
@@ -139,7 +139,7 @@ def Home():
             drawing = svg2rlg(file_route)
             renderPDF.drawToFile(drawing, out_pdf)
 
-            re_route = "http://127.0.0.1:5000/download/"+filename+".pdf"
+            re_route = "/download/"+filename+".pdf"
 
             return redirect(re_route)
            
