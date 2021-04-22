@@ -1,2 +1,38 @@
-# Word-to-pdf-flask
-Th flask Application to convert pdf to word for free
+<h1><b> Any to Pdf Converter</b></h1>
+
+
+<p> This Code converts your Word, doc, docx, jpeg, jpg, png, tiff format files into pdf </p>
+
+<b> Installation </b>
+
+<h3><b> Installing the requirements <b> <h3>
+  
+  Move into the projects folder and run the command.
+  
+  
+          pip install -r requirements.txt
+          
+          
+<h3><b>Running the project</b></h3>
+
+  run the app.py file by using the cmd:
+  
+  
+  
+          python app.py
+          
+          
+          
+ <h3><b> Using the Application </b></h3>
+ 
+  To use the application goto your and open localhost:5000/
+  
+  
+  <b> URL: </b> 
+  
+  
+        localhost:5000/upload
+        localhost:5000/
+        
+  
+  
