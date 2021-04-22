@@ -3,9 +3,8 @@
 
 <p> This Code converts your Word, doc, docx, jpeg, jpg, png, tiff format files into pdf </p>
 
-<b> Installation </b>
 
-<h3><b> Installing the requirements <b> <h3>
+<h3><b> Installation <b> <h3>
   
   Move into the projects folder and run the command.
   
